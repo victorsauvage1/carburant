@@ -46,7 +46,7 @@ div.className="station";
 div.innerHTML=`
 <h3>${info.adresse || "Station"}</h3>
 <p>${info.ville || ""}</p>
-<p class="price">Diesel : ${info.prix_gazole || "N/A"} €</p>
+<p class="price">Diesel : ${info.prix_gazole ? (parseFloat(info.prix_gazole)).toFixed(3) + " €" : "N/A"}</p>
 `;
 
 results.appendChild(div);
