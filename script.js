@@ -1,30 +1,34 @@
-
 async function search(){
 
 let city = document.getElementById("city").value;
 
-let url = "https://api.prix-carburants.etalab.gouv.fr/search/?q=" + city;
+let url = "https://data.economie.gouv.fr/api/records/1.0/search/?dataset=prix-des-carburants-en-france-flux-instantane-v2&q=" + city + "&rows=10";
 
 let response = await fetch(url);
+
 let data = await response.json();
 
 let results = document.getElementById("results");
+
 results.innerHTML = "";
 
-if(!data.results){
-results.innerHTML = "<p>Aucun résultat</p>";
+if(!data.records || data.records.length === 0){
+results.innerHTML = "<p>Aucune station trouvée</p>";
 return;
 }
 
-data.results.forEach(station => {
+data.records.forEach(station => {
+
+let info = station.fields;
 
 let div = document.createElement("div");
+
 div.className = "station";
 
 div.innerHTML = `
-<h3>${station.name || "Station"}</h3>
-<p>${station.address || ""}</p>
-<p class="price">${station.price || "N/A"} €</p>
+<h3>${info.adresse || "Station"}</h3>
+<p>${info.ville || ""}</p>
+<p class="price">Diesel : ${info.prix_gazole || "N/A"} €</p>
 `;
 
 results.appendChild(div);
