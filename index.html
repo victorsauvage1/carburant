@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Comparateur Carburant - Carte</title>
+<link rel="stylesheet" href="style.css">
+
+<!-- Leaflet map -->
+<link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"/>
+<script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+</head>
+
+<body>
+
+<header>
+<h1>Comparateur de carburant</h1>
+<p>Trouve les stations les moins chères autour de toi</p>
+</header>
+
+<div class="controls">
+<input id="city" placeholder="Ville ou code postal">
+<select id="fuel">
+<option value="">Tous carburants</option>
+<option value="gazole">Diesel</option>
+<option value="sp95">SP95</option>
+<option value="sp98">SP98</option>
+<option value="e10">E10</option>
+</select>
+
+<button onclick="search()">Rechercher</button>
+<button onclick="locate()">Autour de moi</button>
+</div>
+
+<div id="map"></div>
+
+<div id="results"></div>
+
+<script src="script.js"></script>
+
+</body>
+</html>
